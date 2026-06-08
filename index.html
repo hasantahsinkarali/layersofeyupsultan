@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Layers of Eyüpsultan</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <script>
+    function teamPhotoFallback(img){
+      const fallbacks = (img.dataset.fallbacks || '').split('|').filter(Boolean);
+      let index = Number(img.dataset.fallbackIndex || '0');
+      if(index < fallbacks.length - 1){
+        index += 1;
+        img.dataset.fallbackIndex = String(index);
+        img.src = fallbacks[index];
+      } else {
+        img.onerror = null;
+        img.style.display = 'none';
+        const fallback = img.nextElementSibling;
+        if(fallback) fallback.style.display = 'block';
+      }
+    }
+    function tryNextTeamPhoto(img){
+      return teamPhotoFallback(img);
+    }
+  </script>
+</head>
+<body>
+
+<nav class="nav">
+  <button class="logo" onclick="showPage('home')">Layers of Eyüpsultan</button>
+  <div class="nav-links">
+    <button data-page="home" title="Home" aria-label="Home">🏠</button>
+    <button data-page="map">Interactive Map</button>
+    <button data-page="about">About the Project</button>
+    <button data-page="feedback">Feedback</button>
+  </div>
+</nav>
+
+<section id="home" class="page landing">
+  <div class="centered">
+    <div class="hero-card">
+      <h1>Layers of Eyüpsultan</h1>
+      <p>A multisensory exploration of urban heritage through visual, material, acoustic, olfactory, gustatory, behavioral and density layers.</p>
+      <button class="btn" onclick="showPage('map')">Start Journey</button>
+    </div>
+  </div>
+</section>
+
+<section id="map" class="page map-page">
+  <div class="map-shell">
+    <div class="map-area">
+      <div class="map-stage">
+        <img src="assets/eyupsultan-map.png" alt="Layers of Eyüpsultan route map">
+      </div>
+    </div>
+
+    <aside class="side-panel">
+      <div id="initialPanel" class="initial-panel">
+        <div class="badge">Interactive Map</div>
+        <h2>Explore the route through sensory layers.</h2>
+        <p>Click on each stop to explore sensory layers.</p>
+        <div class="map-intro-image">
+          <img src="assets/map-intro-visual.png" alt="Layers of Eyüpsultan introduction visual">
+        </div>
+      </div>
+
+      <div id="stopPanel" class="stop-panel">
+        <div class="stop-panel-header">
+          <div class="stop-kicker" id="stopNo">Stop 01</div>
+          <h3 id="stopName">Eyüpsultan Pier</h3>
+        </div>
+        <div class="stop-panel-content">
+          <p class="stop-desc" id="stopDesc"></p>
+          <div class="accordion" id="accordion"></div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section id="about" class="page about">
+  <div class="text-page-wrap">
+    <div class="content-card">
+      <h2>About the Project</h2>
+      <p class="lead">This project was conducted as part of the <strong>TRM 541.01 Cultural Heritage Tourism</strong> course under the supervision of <strong>Assoc. Prof. Dr. Evinç Doğan</strong>. The study focuses on <strong>Eyüpsultan, İstanbul</strong>, a district known for its rich historical, cultural, and religious heritage.</p>
+
+      <p>
+        The study was carried out through a <strong>sensewalk</strong> along a predefined route connecting key landmarks, public spaces, commercial areas, and historic streets. By following this route on foot, the project explores how sensory experiences change across space and contribute to the overall sense of place.
+      </p>
+
+      <p>
+        Drawing on the concepts of <strong>urban sensescapes</strong> and <strong>Non-Representational Theory (NRT)</strong>, observations were recorded through seven layers:
+      </p>
+
+      <ul class="about-layers">
+        <li><strong>Visual Layers</strong> → Historic vs Contemporary Landscapes</li>
+        <li><strong>Material Layers</strong> → Textures, Surfaces, and Urban Fabric</li>
+        <li><strong>Acoustic Layers</strong> → Calls, Conversations and Soundscapes</li>
+        <li><strong>Olfactory Layers</strong> → Scents of Memory and Ritual</li>
+        <li><strong>Gustatory Layers</strong> → Culinary Traces and Local Flavours</li>
+        <li><strong>Behavioral Layers</strong> → Everyday Performances and Ritual Practices</li>
+        <li><strong>Density Layers</strong> → Flows, Gatherings and Urban Intensity</li>
+      </ul>
+
+      <p>
+        With these layers, it is aimed to capture how Eyüpsultan is experienced through everyday practices, movement, and sensory encounters.
+      </p>
+
+      <h3 class="team-title">Team Members</h3>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-photo-wrap">
+            <img class="avatar" src="assets/about/team-01.jpg" data-fallbacks="assets/about/team-01.jpg|assets/about/team-01.jpeg|assets/about/team-01.png|assets/about/team-01.webp|assets/about/team-01.JPG|assets/about/team-01.JPEG|assets/about/team-01.PNG|assets/about/team-01.WEBP|assets/about/team-01" data-fallback-index="0" alt="Evinç Doğan" onerror="teamPhotoFallback(this)">
+            <div class="avatar avatar-fallback"></div>
+            <div class="team-overlay">
+              <strong>Evinç Doğan</strong>
+              <p>Assoc. Prof. Dr.</p>
+            </div>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-photo-wrap">
+            <img class="avatar" src="assets/about/team-02.jpg" data-fallbacks="assets/about/team-02.jpg|assets/about/team-02.jpeg|assets/about/team-02.png|assets/about/team-02.webp|assets/about/team-02.JPG|assets/about/team-02.JPEG|assets/about/team-02.PNG|assets/about/team-02.WEBP|assets/about/team-02" data-fallback-index="0" alt="Öykü Öztürk Karali" onerror="teamPhotoFallback(this)">
+            <div class="avatar avatar-fallback"></div>
+            <div class="team-overlay">
+              <strong>Öykü Öztürk Karali</strong>
+              <p>PhD Student</p>
+            </div>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-photo-wrap">
+            <img class="avatar" src="assets/about/team-03.jpg" data-fallbacks="assets/about/team-03.jpg|assets/about/team-03.jpeg|assets/about/team-03.png|assets/about/team-03.webp|assets/about/team-03.JPG|assets/about/team-03.JPEG|assets/about/team-03.PNG|assets/about/team-03.WEBP|assets/about/team-03" data-fallback-index="0" alt="Hasan Tahsin Karali" onerror="teamPhotoFallback(this)">
+            <div class="avatar avatar-fallback"></div>
+            <div class="team-overlay">
+              <strong>Hasan Tahsin Karali</strong>
+              <p>PhD Student</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="disclaimer-box">
+        <h3>Disclaimer</h3>
+        <p>
+          All field observations, photographs, sensory recordings, mapping activities, route design, website development, and data collection presented in this project were conducted directly by the project owners. Artificial Intelligence (AI) tools were used for website development and language refinement. All observations, interpretations, analyses, and original project development and content remain the work of the project owners.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="feedback" class="page feedback">
+  <div class="text-page-wrap">
+    <div class="feedback-card">
+      <h2>Feedback</h2>
+      <p>Share your observations about the route. Which sensory layer was the most memorable?</p>
+      <form class="feedback-form" id="feedbackForm">
+        <input type="text" id="feedbackName" name="name" placeholder="Name / nickname">
+        <input type="text" id="feedbackStop" name="stop" placeholder="Most memorable stop">
+        <textarea id="feedbackText" name="feedback" placeholder="Write your feedback..." required></textarea>
+        <button class="submit" id="feedbackSubmit" type="submit">Submit Feedback</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<div class="media-modal" id="mediaModal">
+  <button class="modal-close" onclick="closeMediaModal()">×</button>
+  <button class="modal-arrow modal-prev" onclick="modalMove(-1)">←</button>
+  <div class="modal-content" id="modalContent"></div>
+  <button class="modal-arrow modal-next" onclick="modalMove(1)">→</button>
+  <div class="modal-counter" id="modalCounter">1 / 1</div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
